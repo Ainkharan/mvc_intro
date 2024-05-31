@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-public class CoffeeControllerTests {
+public class ResultControllerTests {
 
     @Autowired
     private MockMvc mockMvcController;
@@ -32,10 +32,23 @@ public class CoffeeControllerTests {
         String expectedValue = "latte";
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/coffee"))
+                        MockMvcRequestBuilders.get("/coffee").param(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedValue));
     }
+
+    @Test
+    public void testGetCoffeeWithRequestParams() throws Exception {
+
+        String expectedValue = "cappuccino";
+
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.get("/coffee").param("name", "cappuccino"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedValue));
+    }
+
+
 
 
 
