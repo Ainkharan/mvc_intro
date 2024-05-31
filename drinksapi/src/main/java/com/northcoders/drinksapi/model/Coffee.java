@@ -1,6 +1,6 @@
 package com.northcoders.drinksapi.model;
 
-public record Result(Long id,
+public record Coffee(Long id,
                      String name) {
 
 
