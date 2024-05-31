@@ -9,6 +9,7 @@ public class HomeController {
 
     @GetMapping(value = "/")
     public String home(){
+
         return "Welcome to the Drinks API!";
     }
 
